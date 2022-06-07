@@ -21,4 +21,3 @@
 
 <p> 2- Qual o ticket médio mensal dos pedidos apresentados? Qual o volume médio mensal de vendas (todas as lojas)?
 <p> 3- Existe alguma correlação entre o país e o volume de itens vendidos? Qual o item mais vendido e o menos vendido no país com maior volume de vendas?
-<p> 4- Extra: A partir dos números apresentados e o seu conhecimento prévio, apresente ideias/estratégias que podem ser implementadas para auxiliar nossos lojistas a aumentarem o volume de vendas.
