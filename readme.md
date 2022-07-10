@@ -1,23 +1,41 @@
-# Caso
-<p> Estamos buscando maneiras de identificar nossos clientes-chave e fatores de sucesso na plataforma para identificar padrões e replicar ações para toda a base. Para isso, gostaríamos de analisar a base de pedidos dos nossos lojistas, ou seja, compras efetuadas em sites que utilizam a nossa plataforma de e-commerce internacionalmente.
-<p>Com esses dados em mãos, poderemos propor ações que ajudem nossos lojistas a venderem mais e por consequência ficarem mais satisfeitos coma nossa plataforma. Para isso, os seguintes dados foram disponibilizados:
+# E-COMMERCE STUDY
+## About
+Looking for ways to identify key customers and success factors on a platform to identify patterns and replicate actions for the entire base, we made this initial study to show insights based on colleted data. 
 
-- __InvoiceNumber:__ Número de registro do pedido
-- __StoreId:__ Número de registro da loja
-- __StockCode:__ Identificador do produto no estoque
-- __Description:__ Descrição do produto
-- __Quantity:__ Quantidade do produto no pedido
-- __InvoiceDate:__ Data de pedido
-- __UnitPrice:__ Preço unitário
-- __CustomerId:__ Id do comprador
-- __Country:__ País de registro da compra
+### Questions:
 
-<p> Perguntas que devem ser respondidas:
-<p> 1- Quais as 10 lojas com maior faturamento em pedidos? Sumarize os dados dessas lojas apresentando os seguintes campos:
+1) What are the 10 stores with the highest revenue in orders? Summarize this store's data
+showing the following fields:
+    - StoreId
+    - Total volume of items sold
+    - Total value sold
+2) What is the average monthly ticket of the requests submitted? What is the average monthly volume of
+sales (all stores)?
+3) What is the most sold and least sold item in the country with the highest sales volume?
 
-- StoreId
-- Volume total de itens vendidos
-- Valor total vendido
+## Data dictionary:
 
-<p> 2- Qual o ticket médio mensal dos pedidos apresentados? Qual o volume médio mensal de vendas (todas as lojas)?
-<p> 3- Existe alguma correlação entre o país e o volume de itens vendidos? Qual o item mais vendido e o menos vendido no país com maior volume de vendas?
+The original CSV file: 
+| InvoiceNumber | StoreID | StockCode | Description | Quantity | InvoiceDate | UnitPrice | CustomerId | Country
+|:-------------:|:-------:|:--------:|:----------:| :-------:| :----------:| :--------:| :---------:|:------:|
+|Order registration number|Store registration number|In-stock product id|Product description|Product quantity on order|Request Date|Product unit price|Customer identification|Country of purchase registration
+
+
+## Files
+This project contains the following files:
+
+- __data_analysis.ipynb__: a Jupyter file with a preliminary analysis of the data in the original CSV
+- __sql_queries.py__: a Python file with SQL queries. This file is imported by _etl.py_
+- __etl.py__: the main script of project where the data is extracted, transformed and loaded to MySQL database
+- __scripts.sql__: SQL queries of the questions made
+- __Data file__: a folder with the original CSV and where the new CSV is saved.
+
+
+## Report
+In the preliminary analysis, quantitative data fields with negative values were found. In this case these fields must be eliminated so as not to influence the final results.
+
+Some stock identifiers (_stock_code_) reference discounts and shipping amounts (alphanumeric or letter-only stock codes). Such values were also discarded.
+
+The column names were also modified to avoid problems in database queries, replacing "_camelCase_" with "_snake_case_".
+
+All those modifications above are made in "_etl.py_", where are made the connections and the necessary queries to database MySQL, and the table inserts.
